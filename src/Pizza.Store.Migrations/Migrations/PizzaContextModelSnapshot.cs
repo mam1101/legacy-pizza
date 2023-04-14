@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Pizza.Store.Core.Contexts;
+using Pizza.Store.Migrations;
 
 #nullable disable
 
-namespace Pizza.Store.API.Migrations
+namespace Pizza.Store.Migrations.Migrations
 {
     [DbContext(typeof(PizzaContext))]
     partial class PizzaContextModelSnapshot : ModelSnapshot
@@ -14,7 +14,7 @@ namespace Pizza.Store.API.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.4");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
 
             modelBuilder.Entity("Pizza.Store.Core.Models.Pizza", b =>
                 {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Pizza.Store.API.Migrations
+namespace Pizza.Store.Migrations.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

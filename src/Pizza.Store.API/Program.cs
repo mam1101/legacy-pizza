@@ -1,15 +1,11 @@
-using Pizza.Store.Core.Interfaces;
-using Pizza.Store.Core.Services;
-using Pizza.Store.Core;
+using System.Configuration;
+using Pizza.Store.Infrastructure;
+using Pizza.Store.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string? connectionString = builder.Configuration.GetConnectionString("SqliteConnection");
-builder.Services.AddDbContext(connectionString!, "Pizza.Store.API");
-
 builder.Services.AddControllers();
-builder.Services.AddScoped<IPizzaService, PizzaService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddDatabaseContext(builder.Configuration);
 
 // builder.Services.AddSqlite<PizzaContext>("Data Source=LegacyPizza.db");
 

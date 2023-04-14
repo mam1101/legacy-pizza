@@ -1,0 +1,36 @@
+name: AWS CDK Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release string (ex. 2.1.0)'
+        type: string
+        required: true
+
+jobs:
+  awsCDKDeploy:
+    name: CDK Deploy
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged
+    runs-on: ubuntu-latest
+    env:
+      APPLICATION_VERSION: "${{ github.event_name == 'workflow_dispatch' && github.event.inputs.release_version || github.event.pull_request.title }}"
+      NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci && (cd ./infrastructure/ && npm ci)
+      - run: npm install -g aws-cdk
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: 'us-east-2'
+      - name: Deploy stack
+        run: npm run aws:cdk:full-deploy
+      - name: Initiate Rolling Update
+        run: aws ecs update-service --cluster MarketingSiteCluster --service MarketingSiteWebServerService --force-new-deployment

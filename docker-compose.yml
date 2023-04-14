@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  pizza-store-api:
+    build: 
+      dockerfile: ./Dockerfile
+    restart: always
+    volumes:
+      - ./db:/db
+    ports:
+      - "3030:80"
+    networks:
+      - pizza-store
+
+networks:
+  pizza-store:
+    driver: bridge
+
+volumes:
+  db:

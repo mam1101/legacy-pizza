@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Pizza.Store.Core.Contexts;
+namespace Pizza.Store.Migrations;
 
 public class PizzaContext : DbContext
 {
@@ -8,5 +8,5 @@ public class PizzaContext : DbContext
     {
     }
 
-    public DbSet<Models.Pizza> Pizzas => Set<Models.Pizza>();
+    public DbSet<Core.Models.Pizza> Pizzas => Set<Core.Models.Pizza>();
 }

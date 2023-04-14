@@ -1,20 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="../Pizza.Store.Core/Pizza.Store.Core.csproj" />
-        <ProjectReference Include="../Pizza.Store.Infrastructure/Pizza.Store.Infrastructure.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="EntityFramework" Version="6.4.4" />
-      <PackageReference Include="FluentValidation" Version="11.5.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
         <PrivateAssets>all</PrivateAssets>
@@ -22,12 +25,8 @@
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     </ItemGroup>
 
 </Project>

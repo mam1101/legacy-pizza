@@ -1,0 +1,37 @@
+{
+  "name": "pizzastore",
+  "version": "1.0.0",
+  "description": "Project to learn C#/.NET by Max Miller.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev:start": "npm-run-all docker:*",
+    "dev:sync": "",
+    "dev:stop": "docker compose down",
+    "dev:build": "npm run docker:build",
+    "dev:up": "npm run docker:run",
+    "docker:down": "docker compose down",
+    "docker:build": "docker compose build --build-arg SKIP_NEW_RELIC=true",
+    "docker:run": "docker compose up -d",
+    "docker:run:watch": "docker compose up",
+    "aws:cdk:bootstrap": "(cd ./infrastructure/ && cdk bootstrap)",
+    "aws:cdk:synth": "(cd ./infrastructure/ && cdk synth)",
+    "aws:cdk:deploy": "(cd ./infrastructure/ && cdk deploy)",
+    "aws:cdk:full-deploy": "(cd ./infrastructure/ && cdk deploy --all --require-approval never)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mam1101/legacy-pizza.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mam1101/legacy-pizza/issues"
+  },
+  "homepage": "https://github.com/mam1101/legacy-pizza#readme",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

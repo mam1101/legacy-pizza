@@ -1,6 +1,6 @@
 namespace Pizza.Store.Core.Interfaces;
 
-public interface IOrderService
+public interface IPizzaRepsitory : IDisposable
 {
     
 }

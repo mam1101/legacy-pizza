@@ -7,23 +7,23 @@ namespace Pizza.Store.API.Controllers;
 [Route("api/[controller]")]
 public class PizzaController : ControllerBase
 {
-    private readonly IPizzaService _service;
+    private readonly IPizzaRepsitory _pizzaRepsitory;
 
-    public PizzaController(IPizzaService pizzaService)
+    public PizzaController(IPizzaRepsitory pizzaRepsitory)
     {
-        _service = pizzaService;
+        _pizzaRepsitory = pizzaRepsitory;
     }
     
-    [HttpGet]
-    public async Task<IActionResult> List()
-    {
-        return Ok(await _service.GetAllPizzas());
-    }
-
-    [HttpGet]
-    [Route("{id}")]
-    public async Task<IActionResult> Get(int id)
-    {
-        return Ok(await _service.GetPizzaById(id));
-    }
+    // [HttpGet]
+    // public async Task<IActionResult> List()
+    // {
+    //     return Ok();
+    // }
+    //
+    // [HttpGet]
+    // [Route("{id}")]
+    // public async Task<IActionResult> Get(int id)
+    // {
+    //     return Ok();
+    // }
 }

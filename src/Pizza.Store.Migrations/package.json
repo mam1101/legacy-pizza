@@ -1,0 +1,13 @@
+{
+  "name": "pizza.store.migrations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate:init": "dotnet ef migrations add InitialCreate --startup-project ../Pizza.Store.API --context PizzaContext",
+    "migrate:make": "dotnet ef migrations add --startup-project ../Pizza.Store.API --context PizzaContext",
+    "db:update": "dotnet ef database update --startup-project ../Pizza.Store.API --context PizzaContext"
+  },
+  "author": "",
+  "license": "ISC"
+}
