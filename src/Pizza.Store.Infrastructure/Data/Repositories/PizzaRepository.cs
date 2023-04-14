@@ -1,32 +1,10 @@
-using Pizza.Store.Core.Interfaces;
 using Pizza.Store.Migrations;
 
 namespace Pizza.Store.Infrastructure.Data.Repositories;
 
-public class PizzaRepository: IPizzaRepsitory, IDisposable
+public class PizzaRepository : Repository<Core.Models.Pizza>
 {
-    private readonly PizzaContext _context;
-
-    public PizzaRepository(PizzaContext context)
+    public PizzaRepository(PizzaContext dbContext) : base(dbContext)
     {
-        _context = context;
-    }
-    
-    private bool _disposed = false;
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!_disposed)
-        {
-            if (disposing)
-            {
-                _context.Dispose();
-            }
-        }
-        _disposed = true;
-    }
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
     }
 }
