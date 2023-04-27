@@ -4,9 +4,9 @@ namespace Pizza.Store.Migrations;
 
 public class PizzaContext : DbContext
 {
-    public PizzaContext (DbContextOptions<PizzaContext> options): base(options)
+    public PizzaContext ()
     {
     }
 
-    public DbSet<Core.Models.Pizza> Pizzas => Set<Core.Models.Pizza>();
+    public virtual DbSet<Core.Models.Pizza> Pizzas { get; set; }
 }

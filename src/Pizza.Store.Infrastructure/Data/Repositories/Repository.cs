@@ -8,7 +8,7 @@ public class Repository<T> : IRepository<T> where T : EntityBase
 {
     private readonly PizzaContext _dbContext;
 
-    public Repository(PizzaContext dbContext)
+    protected Repository(PizzaContext dbContext)
     {
         _dbContext = dbContext;
     }
