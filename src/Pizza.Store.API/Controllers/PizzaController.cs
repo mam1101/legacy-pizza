@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Pizza.Store.API.Requests;
 using Pizza.Store.Core.Interfaces;
 
 namespace Pizza.Store.API.Controllers;
@@ -22,15 +23,15 @@ public class PizzaController : ControllerBase
     
     [HttpGet]
     [Route("{id}")]
-    public async Task<IActionResult> Get(int id)
+    public async Task<IActionResult> Get(GetPizzaRequest pizzaRequest)
     {
-        return Ok(_pizzaRepository.GetById(id));
+        return Ok(_pizzaRepository.GetById(pizzaRequest.Id));
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(Core.Models.Pizza pizza)
+    public async Task<IActionResult> Create(CreatePizzaRequest pizzaRequest)
     {
-        _pizzaRepository.Add(pizza);
-        return Ok(pizza);
+        _pizzaRepository.Add(pizzaRequest);
+        return Ok(pizzaRequest);
     }
 }

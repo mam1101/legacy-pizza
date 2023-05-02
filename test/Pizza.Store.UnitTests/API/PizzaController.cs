@@ -1,10 +1,11 @@
+using Pizza.Store.API.Requests;
+
 namespace Pizza.Store.UnitTests.API;
 
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Pizza.Store.API.Controllers;
-using Pizza.Store.Core.Interfaces;
-using Pizza.Store.Infrastructure.Data.Repositories;
+using Core.Interfaces;
 using Pizza = Pizza.Store.Core.Models.Pizza;
 
 
@@ -58,9 +59,10 @@ public class PizzaControllerTests
         });
         
         var controller = new PizzaController(mockRepo.Object);
+        var request = new GetPizzaRequest(0);
         
         //Act
-        var result = await controller.Get(0);
+        var result = await controller.Get(request);
 
         //Assert
         var assertResult = Assert.IsType<OkObjectResult>(result);
@@ -78,7 +80,7 @@ public class PizzaControllerTests
         var controller = new PizzaController(mockRepo.Object);
         
         //Act
-        var result = await controller.Create(new Pizza()
+        var result = await controller.Create(new CreatePizzaRequest()
         {
             Name = "Test 1",
             Description = "Test Pizza 1"
